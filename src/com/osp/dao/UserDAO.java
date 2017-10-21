@@ -11,6 +11,6 @@ import com.osp.entity.User;
 @Scope("prototype")
 public interface UserDAO extends BaseDAO {
 	
-	public List<User> findAll();
+	public List<User> findAll() throws Exception;
 
 }

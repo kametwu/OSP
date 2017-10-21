@@ -16,7 +16,7 @@ public class UserService extends BaseService {
 	@Resource
 	private UserDAO userDAO;
 	
-	public List<User> findAll() {
+	public List<User> findAll() throws Exception {
 		return userDAO.findAll();
 	}
 

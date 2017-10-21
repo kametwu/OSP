@@ -20,17 +20,17 @@
     <tx:annotation-driven transaction-manager="transactionManager" />
     
     <!-- 静态资源默认servlet配置 (1)加入对静态资源的处理：js,gif,png (2)允许使用"/"做整体映射 -->
-    <mvc:default-servlet-handler/>
+    <mvc:default-servlet-handler />
     
-    <!-- 配置jsp 显示ViewResolver -->
+    <!-- 配置jsp 显示ViewResolver 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
          <property name="prefix" value="/WEB-INF/jsp/" />
          <property name="suffix" value=".jsp" />
     </bean>
-     
+    -->
     <!-- 扫描注解相关的bean -->
-    <context:component-scan base-package="com.osp.web" />
+    <context:component-scan base-package="com.osp.controller" />
     <context:component-scan base-package="com.osp.service" />
     
     <!-- 整合MyBatis配置数据库连接池 -->
@@ -62,7 +62,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 注入数据库连接池 -->
         <property name="dataSource" ref="dataSource" />
-        <!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
+        <!-- 配置MyBaties全局配置文件 -->
         <property name="configLocation" value="classpath:resources/mybatis.xml" />
         <!-- 扫描entity包 使用别名 -->
         <property name="typeAliasesPackage" value="com.osp.entity" />

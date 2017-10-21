@@ -1,4 +1,4 @@
-package com.osp.web;
+package com.osp.controller;
 
 import java.util.List;
 
@@ -9,22 +9,30 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.osp.entity.User;
 import com.osp.service.UserService;
 
 @Controller
 @Scope("prototype")
 @RequestMapping("/user")
-public class UserAction extends BaseAction {
+public class UserController extends BaseController {
 	@Resource
 	private UserService userService;
 	
 	@RequestMapping("/login")
 	@ResponseBody
-	public Object login() {
-		List<User> list = userService.findAll();  
-        return JSONArray.toJSONString(list); 
+	public String login() throws Exception {
+		boolean success = false;
+		String msg = null;
+		List<User> list = null;
+		try {
+			list = userService.findAll();
+			success = true;
+		} catch (Exception e) {
+			msg = e.getMessage();
+		}
+		return this.returnJSON(success, msg, list);
 	}
 	
 }
