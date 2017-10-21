@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+	
+	<!-- 开启Spring注解模式 -->
+	<mvc:annotation-driven />
+	
+	<!-- 配置基于注解的声明式事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- 静态资源默认servlet配置 (1)加入对静态资源的处理：js,gif,png (2)允许使用"/"做整体映射 -->
+    <mvc:default-servlet-handler/>
+    
+    <!-- 配置jsp 显示ViewResolver -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+	 	<property name="prefix" value="/WEB-INF/jsp/" />
+	 	<property name="suffix" value=".jsp" />
+	</bean>
+	 
+    <!-- 扫描注解相关的bean -->
+	<context:component-scan base-package="com.osp.web" />
+	<context:component-scan base-package="com.osp.service" />
+	
+	<!-- 整合MyBatis配置数据库连接池 -->
+	<!-- 数据库连接池 -->  
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+    	<!-- JDBC驱动名称 -->
+        <property name="driverClassName" value="${jdbc.driver}" />  
+    	<!-- JDBC URL -->
+        <property name="url" value="${jdbc.url}" />
+    	<!-- 用户名 -->
+        <property name="username" value="${jdbc.username}" />
+    	<!-- 密码 -->
+        <property name="password" value="${jdbc.password}" />
+    	<!-- 初始连接数 -->
+        <property name="initialSize" value="${jdbc.initialSize}" />
+    	<!-- 最大连接数 -->
+        <property name="maxActive" value="${jdbc.maxActive}" />
+    	<!-- 最大空闲 -->
+        <property name="maxIdle" value="${jdbc.maxIdle}" />
+    	<!-- 最小空闲 -->
+        <property name="minIdle" value="${jdbc.minIdle}" />
+    	<!-- 最长等待时间 (毫秒) -->
+        <property name="maxWait" value="${jdbc.maxWait}" />
+    </bean>
+
+	<!-- 配置SqlSessionFactory对象 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 注入数据库连接池 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 配置MyBaties全局配置文件:mybatis-config.xml -->
+		<property name="configLocation" value="classpath:resources/mybatis.xml" />
+		<!-- 扫描entity包 使用别名 -->
+		<property name="typeAliasesPackage" value="com.osp.entity" />
+		<!-- 扫描sql配置文件:mapper需要的xml文件 -->
+		<property name="mapperLocations" value="classpath:resources/mapper/*.xml" />
+	</bean>
+
+	<!-- 配置扫描Dao接口包，动态实现Dao接口，注入到spring容器中 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 注入sqlSessionFactory -->
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+		<!-- 给出需要扫描Dao接口包 -->
+		<property name="basePackage" value="com.osp.dao" />
+	</bean>
+	
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 注入数据库连接池 -->
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+</beans>
