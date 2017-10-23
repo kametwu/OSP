@@ -5,14 +5,12 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
-import com.osp.entity.TUser;
+import com.osp.entity.TCode;
 
 @Repository
 @Scope("prototype")
-public interface UserDAO extends BaseDAO {
-
-	public List<TUser> findAll() throws Exception;
+public interface CodeDAO extends BaseDAO {
 	
-	public TUser findUserById(String id) throws Exception;
+	public List<TCode> findAll() throws Exception;
 
 }

@@ -32,6 +32,7 @@
     <!-- 扫描注解相关的bean -->
     <context:component-scan base-package="com.osp.controller" />
     <context:component-scan base-package="com.osp.service" />
+    <context:component-scan base-package="com.osp.system" />
     
     <!-- 整合MyBatis配置数据库连接池 -->
     <!-- 配置数据库相关参数properties的属性 -->

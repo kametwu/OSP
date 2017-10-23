@@ -13,9 +13,35 @@
 	    <result property="modifyUser" column="modify_user" />
 	    <result property="modifyTime" column="modify_time" />
 	</resultMap>
+	
+	<resultMap id="TUser" type="com.osp.entity.TUser">
+	    <id property="id" column="id" />
+	    <result property="account" column="account" />
+	    <result property="password" column="password" />
+	    <result property="name" column="name" />
+	    <result property="sex" column="sex" />
+	    <result property="birthday" column="birthday" />
+	    <result property="certType" column="cert_type" />
+	    <result property="certNo" column="cert_no" />
+	    <result property="telNumber" column="tel_number" />
+	    <result property="mobNumber" column="mob_number" />
+	    <result property="faxNumber" column="fax_number" />
+	    <result property="email" column="email" />
+	    <result property="empCode" column="emp_code" />
+	    <result property="position" column="position" />
+	    <result property="passwordStatus" column="password_status" />
+	    <result property="lastLoginTime" column="last_login_time" />
+	    <result property="expiryTime" column="expiry_time" />
+	    <result property="status" column="status" />
+	    <result property="remark" column="remark" />
+	    <result property="createUser" column="create_user" />
+	    <result property="createTime" column="create_time" />
+	    <result property="modifyUser" column="modify_user" />
+	    <result property="modifyTime" column="modify_time" />
+	</resultMap>
 
-	<select id="findAll" resultType="com.osp.entity.User">  
-		select * from osp_user
+	<select id="findAll" resultType="com.osp.entity.TUser">  
+		select * from t_user
 	</select>
 
 </mapper>

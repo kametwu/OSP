@@ -5,6 +5,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,12 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
+import com.osp.system.OSPCache;
 import com.osp.util.OSPUtil;
 
 @Transactional
 public class BaseController {
 	protected final static String CONTENT_TYPE_JSON = "text/json;charset=utf-8";
 	protected final static String CONTENT_TYPE_HTML = "text/html;charset=utf-8";
+	@Resource(name="OSPCACHE")
+	protected OSPCache ospCache;
 	@Autowired
 	private HttpServletRequest request;
 	@Autowired

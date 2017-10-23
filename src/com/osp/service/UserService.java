@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.osp.dao.UserDAO;
-import com.osp.entity.User;
+import com.osp.entity.TUser;
 
 @Service
 @Scope("prototype")
@@ -16,7 +16,7 @@ public class UserService extends BaseService {
 	@Resource
 	private UserDAO userDAO;
 	
-	public List<User> findAll() throws Exception {
+	public List<TUser> findAll() throws Exception {
 		return userDAO.findAll();
 	}
 
