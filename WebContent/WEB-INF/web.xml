@@ -60,7 +60,7 @@
 	
 	<!-- 欢迎页面配置 -->
 	<welcome-file-list>
-		<welcome-file>/index.jsp</welcome-file>
+		<welcome-file>/login.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<!-- 配置错误页面 将错误代码(Error Code)或异常(Exception)的种类对应到web应用资源路径 -->

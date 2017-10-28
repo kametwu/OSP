@@ -20,4 +20,8 @@ public class UserService extends BaseService {
 		return userDAO.findAll();
 	}
 
+	public TUser login(String account, String password) throws Exception {
+		return userDAO.findUserByLoginAccount(account);
+	}
+
 }

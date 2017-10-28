@@ -1,7 +1,5 @@
 package com.osp.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.springframework.context.annotation.Scope;
@@ -25,19 +23,26 @@ public class UserController extends BaseController {
 	@Resource
 	private UserService userService;
 	
-	@RequestMapping("/login")
+	/**
+	 * 系统登录
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/login", method=RequestMethod.POST)
 	@ResponseBody
 	public String login() throws Exception {
 		boolean success = false;
 		String msg = null;
-		List<TUser> list = null;
+		TUser user = null;
 		try {
-			list = userService.findAll();
+			String account = this.getParamMap().get("account");
+			String password = this.getParamMap().get("password");
+			user = userService.login(account, password);
 			success = true;
 		} catch (Exception e) {
 			msg = e.getMessage();
 		}
-		return this.returnJSON(success, msg, list);
+		return this.returnJSON(success, msg, user);
 	}
 	
 	@RequestMapping(value={"/listall", "/listall/{id}"}, method=RequestMethod.GET)

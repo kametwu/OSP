@@ -2,6 +2,7 @@ package com.osp.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
@@ -14,5 +15,7 @@ public interface UserDAO extends BaseDAO {
 	public List<TUser> findAll() throws Exception;
 	
 	public TUser findUserById(String id) throws Exception;
+
+	public TUser findUserByLoginAccount(@Param("account")String account) throws Exception;
 
 }
