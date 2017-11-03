@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.osp.entity.TUser;
+import com.osp.entity.OResult;
 import com.osp.service.UserService;
 import com.osp.system.OSPResource;
 
@@ -28,21 +28,13 @@ public class UserController extends BaseController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/login", method=RequestMethod.POST)
+	@RequestMapping(value="/login", method=RequestMethod.POST, produces=CONTENT_TYPE_JSON)
 	@ResponseBody
-	public String login() throws Exception {
-		boolean success = false;
-		String msg = null;
-		TUser user = null;
-		try {
-			String account = this.getParamMap().get("account");
-			String password = this.getParamMap().get("password");
-			user = userService.login(account, password);
-			success = true;
-		} catch (Exception e) {
-			msg = e.getMessage();
-		}
-		return this.returnJSON(success, msg, user);
+	public String login() {
+		String account = this.getParamMap().get("account");
+		String password = this.getParamMap().get("password");
+		OResult ret = userService.login(account, password);
+		return ret.toString();
 	}
 	
 	@RequestMapping(value={"/listall", "/listall/{id}"}, method=RequestMethod.GET)

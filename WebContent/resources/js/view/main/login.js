@@ -4,6 +4,7 @@ $('#btn_login').click(function(){
 	var password = $('#password').val();
 	if(account == '' || password == '') {
 		alert('用户名或密码不能为空');
+		return;
 	}
 	$.ajax({
 		type: 'POST',
@@ -11,7 +12,11 @@ $('#btn_login').click(function(){
 		data: {'account': account, 'password': password},
 		dataType: 'json',
 		success: function(result) {
-			alert(JSON.stringify(result));
+			if(result && result.success) {
+				window.location.href = "index.jsp";
+			}else {
+				alert(result.msg);
+			}
 		}
 	});
 });
