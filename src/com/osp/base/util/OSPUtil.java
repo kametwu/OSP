@@ -1,4 +1,4 @@
-package com.osp.util;
+package com.osp.base.util;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.osp.annotation.FieldMeta;
+//import com.osp.base.annotation.FieldMeta;
 
 public class OSPUtil {
 	
@@ -25,18 +25,18 @@ public class OSPUtil {
 		return JSONArray.toJSONString(obj, SerializerFeature.WriteMapNullValue);
 	}
 	
-	public static Object getAnnoValue(Class<?> clazz, String fieldName, String annoAttr) {
-		Object annoValue = null;
-		try {
-			Field field = clazz.getDeclaredField(fieldName);
-			FieldMeta fm = field.getDeclaredAnnotation(FieldMeta.class);
-			Method method = fm.annotationType().getDeclaredMethod(annoAttr);
-			annoValue = method.invoke(fm);
-		} catch (Exception e) {
-			annoValue = null;
-		}
-		return annoValue;
-	}
+//	public static Object getAnnoValue(Class<?> clazz, String fieldName, String annoAttr) {
+//		Object annoValue = null;
+//		try {
+//			Field field = clazz.getDeclaredField(fieldName);
+//			FieldMeta fm = field.getDeclaredAnnotation(FieldMeta.class);
+//			Method method = fm.annotationType().getDeclaredMethod(annoAttr);
+//			annoValue = method.invoke(fm);
+//		} catch (Exception e) {
+//			annoValue = null;
+//		}
+//		return annoValue;
+//	}
 	
 	public static Object getAnnoValue(Class<?> clazz, String fieldName, Class<?> annoClazz, String annoAttr) {
 		Object annoValue = null;

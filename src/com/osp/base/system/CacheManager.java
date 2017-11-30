@@ -1,4 +1,4 @@
-package com.osp.system;
+package com.osp.base.system;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,18 +10,18 @@ import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.osp.dao.CodeDAO;
-import com.osp.dao.UserDAO;
-import com.osp.entity.TCode;
-import com.osp.entity.TUser;
+import com.osp.base.dao.CodeDAO;
+import com.osp.base.dao.UserDAO;
+import com.osp.base.entity.TCode;
+import com.osp.base.entity.TUser;
 
-@Component("OSPCACHE")
+@Service
 @Scope("singleton")
-public class OSPCache {
-	private final static Logger logger = LoggerFactory.getLogger(OSPCache.class);
+public class CacheManager {
+	private final static Logger logger = LoggerFactory.getLogger(CacheManager.class);
 	private Map<OSPResource, JSONObject> cacheMap;
 	@Resource
 	private UserDAO userDAO;
@@ -32,7 +32,7 @@ public class OSPCache {
 		return cacheMap;
 	}
 	
-	public OSPCache() {
+	public CacheManager() {
 		System.out.println("init cache object...");
 		logger.info("Initialize global cache...");
 		cacheMap = new HashMap<OSPResource, JSONObject>();

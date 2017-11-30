@@ -1,4 +1,4 @@
-package com.osp.controller;
+package com.osp.base.controller;
 
 import java.io.IOException;
 import java.util.Enumeration;
@@ -14,15 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.fastjson.JSONObject;
-import com.osp.system.OSPCache;
-import com.osp.util.OSPUtil;
+import com.osp.base.system.CacheManager;
+import com.osp.base.util.OSPUtil;
 
 @Transactional
 public class BaseController {
 	protected final static String CONTENT_TYPE_JSON = "text/json;charset=utf-8";
 	protected final static String CONTENT_TYPE_HTML = "text/html;charset=utf-8";
 	@Resource(name="OSPCACHE")
-	protected OSPCache ospCache;
+	protected CacheManager ospCache;
 	@Autowired
 	private HttpServletRequest request;
 	@Autowired

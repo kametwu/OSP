@@ -1,4 +1,4 @@
-package com.osp.dao;
+package com.osp.base.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
 
-import com.osp.entity.TUser;
+import com.osp.base.entity.TUser;
 
 @Repository
 @Scope("prototype")

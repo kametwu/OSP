@@ -1,4 +1,4 @@
-package com.osp.system;
+package com.osp.base.system;
 
 public enum OSPResource {
 	OSP_CACHE_USER,

@@ -1,4 +1,4 @@
-package com.osp.entity;
+package com.osp.base.entity;
 
 import java.sql.Timestamp;
 

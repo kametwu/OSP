@@ -1,4 +1,4 @@
-package com.osp.controller;
+package com.osp.base.controller;
 
 import javax.annotation.Resource;
 
@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSONObject;
-import com.osp.entity.OResult;
-import com.osp.service.UserService;
-import com.osp.system.OSPResource;
+import com.osp.base.entity.ResultModel;
+import com.osp.base.service.UserService;
+import com.osp.base.system.OSPResource;
 
 import jodd.util.StringUtil;
 
@@ -33,8 +33,8 @@ public class UserController extends BaseController {
 	public String login() {
 		String account = this.getParamMap().get("account");
 		String password = this.getParamMap().get("password");
-		OResult ret = userService.login(account, password);
-		return ret.toString();
+		ResultModel rm = userService.login(account, password);
+		return rm.toString();
 	}
 	
 	@RequestMapping(value={"/listall", "/listall/{id}"}, method=RequestMethod.GET)

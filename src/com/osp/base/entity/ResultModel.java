@@ -1,12 +1,12 @@
-package com.osp.entity;
+package com.osp.base.entity;
 
-public class OResult extends BaseEntity {
+public class ResultModel extends BaseEntity {
 	private Boolean success;
 	private String code;
 	private String msg;
 	private Object data;
 	
-	public OResult() {
+	public ResultModel() {
 		
 	}
 	

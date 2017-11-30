@@ -1,6 +1,6 @@
-package com.osp.entity;
+package com.osp.base.entity;
 
-import com.osp.util.OSPUtil;
+import com.osp.base.util.OSPUtil;
 
 public class BaseEntity {
 	
